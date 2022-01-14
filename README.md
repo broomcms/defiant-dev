@@ -4,7 +4,7 @@
 #By Patrick Simard
 
 ### A little about this project
-Hey guys! So I received a challenge from defiant. In order to get this challenge going I created a docker box. Been using it for a while and really like it's simplicity. For this challenge, I decided to retrieve a remote json code provided by an API and print it out on a page. It's simple when you think about it ... You can retrieve it with a file_get_content() or a cURL request and foreach it to show the data. But I thought it would be interesting to make things a little bit more interesting by introducing datatable that comes with a pagination system, a search and column filters. Also I saved the key to the database and created a very basic backend to change the key.
+Hey guys! So I received a challenge from defiant. In order to get this challenge going I created a docker box. Been using it for a while and really like it's simplicity. For this challenge, I decided to retrieve a remote json code provided by an API and print it out on a page. It's simple when you think about it ... You can retrieve it with a file_get_content() or a cURL request and foreach it to show the data. But I thought it would be interesting to introduce datatables. It comes with a pagination system, a search and column filters. Also I saved the key to the database and created a very basic backend to change the key.
 
 ### The big lines of the challenge
 Please write a WordPress plugin that demonstrates interacting with the WordPress plugin API, object oriented programming and has some basic interaction with the WordPress database. The plugin can do anything you would like. 
@@ -21,11 +21,10 @@ exact same field names and data types.
 
 ### Docker information
 
-I created a very nice docker setup for this challenge. It composed of 5 containers.
+I created a very nice docker setup for this challenge. It's composed of 5 containers.
 
  - Container 1: mailhog
    MailHog is a local email server and catches all outgoing mails. I use thfor local developpement to avoid sending out emails to clients when working. What ever email you send at will be captured and dispyed in the mailhug inbox.
-
    This container is setup at : http://localhost:1112
 
  - Container 2: mysql
@@ -33,7 +32,6 @@ I created a very nice docker setup for this challenge. It composed of 5 containe
 
  - Container 3: webserver
    I will be using nginx for my webserver. This container will host the website configurations and will forward port 80 to 1111 we can than use that port to access the website
-
    This container is setup at : http://localhost:1111
 
  - Container 4: php-fpm
@@ -41,10 +39,9 @@ I created a very nice docker setup for this challenge. It composed of 5 containe
 
  - Container 5: PHPMyAdmin
    In order to have a fast access to database data, I added a PHPMyAdmin container.
-   
    This container is setup at : http://localhost:2222
 
-All containers can talk to each others using the container name. I created a network called defiantdev.
+I created a network called defiantdev. All containers withing that network can talk to each others using there container names. 
 
 ### Environment setup instructions
 
@@ -60,6 +57,12 @@ Database setup
  - Go to the PHPMyAdmin URL (localhost:2222)
  - On the left side menu, open the defiantdevdb database
  - Importe the wordpress.sql file at the repository root level
+
+Wordpress Login
+
+    Go to http://localhost:1111/wp-admin/index.php
+    User: Admin
+    Password: admin
 
 # The wordpress challenge
 
@@ -172,9 +175,7 @@ Showing the data
 
     add_shortcode( 'teams', 'team_list' );
     
-
 For this part we are using the datatable library. It will transform the list into a dynamic table using jQuery. It's the fastest and easiest way to turn the data into something fun to browse. In order for the plugin to work, we need to register the CSS and Javascript files. So to do that, I did the following
-
 
     add_action( 'wp_enqueue_scripts', 'datatable');
 
