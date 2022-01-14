@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: defiant chalenge
- * Plugin URI: http://wordpress.test
+ * Plugin URI: https://github.com/broomcms/defiant-dev
  * Description: Retreiving a remote list of sport teams and displaying it
  * Version: 1.0
  * Author: Patrick Simard
- * Author URI: https://github.com/patwebrussell/defiant
+ * Author URI: https://github.com/broomcms/defiant-dev
  */
 
 ////////////////////////////////////////////////////////////////
